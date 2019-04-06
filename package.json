@@ -6,6 +6,10 @@
     "server": "nodemon server.js",
     "start": "node server.js"
   },
+  "engines": {
+    "node": "^10.15.0",
+    "npm": "^6.0.0"
+  },
   "dependencies": {
     "@angular/cli": "^7.3.8",
     "@fortawesome/fontawesome-free": "^5.8.1",
