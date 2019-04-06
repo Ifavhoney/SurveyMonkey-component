@@ -7,7 +7,6 @@
 let app = require('./server/config/app');
 var debug = require('debug')('groupproject:server');
 var http = require('http');
-
 /**
  * Get port from environment and store in Express.
  */
