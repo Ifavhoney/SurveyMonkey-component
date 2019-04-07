@@ -14,6 +14,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService } from './services/auth.service';
 import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
+import { BasePageComponent } from './partials/base-page/base-page.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export function jwtTokenGetter() {
   return localStorage.getItem('id_token');
@@ -26,6 +28,8 @@ export function jwtTokenGetter() {
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    BasePageComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
