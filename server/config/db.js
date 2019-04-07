@@ -1,4 +1,4 @@
 module.exports = {
-    "URI" : "mongodb://localhost/GroupProject",
+    "URI" : "mongodb://group16:password1@ds058739.mlab.com:58739/comp308-w2019-group-project",
     "secret": "SomeSecret"
  }
