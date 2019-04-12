@@ -1,24 +1,33 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { AppRoutingModule } from "./app-routing.module";
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
 
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './partials/header/header.component';
-import { FooterComponent } from './partials/footer/footer.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { AppComponent } from "./app.component";
+import { HeaderComponent } from "./partials/header/header.component";
+import { FooterComponent } from "./partials/footer/footer.component";
+import { LoginComponent } from "./pages/login/login.component";
+import { RegisterComponent } from "./pages/register/register.component";
 
 // Services
-import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
-import { AuthService } from './services/auth.service';
-import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
-import { BasePageComponent } from './partials/base-page/base-page.component';
-import { HomeComponent } from './pages/home/home.component';
+import {
+  FlashMessagesModule,
+  FlashMessagesService
+} from "angular2-flash-messages";
+import { AuthService } from "./services/auth.service";
+import {
+  JwtModule,
+  JwtHelperService,
+  JwtInterceptor
+} from "@auth0/angular-jwt";
+import { BasePageComponent } from "./partials/base-page/base-page.component";
+import { HomeComponent } from "./pages/home/home.component";
+import { SurveyComponent } from "./pages/survey/survey.component";
+import { CreateSurveyComponent } from "./pages/create-survey/create-survey.component";
 
 export function jwtTokenGetter() {
-  return localStorage.getItem('id_token');
+  return localStorage.getItem("id_token");
 }
 
 @NgModule({
@@ -30,6 +39,8 @@ export function jwtTokenGetter() {
     RegisterComponent,
     BasePageComponent,
     HomeComponent,
+    SurveyComponent,
+    CreateSurveyComponent
   ],
   imports: [
     BrowserModule,
@@ -46,4 +57,4 @@ export function jwtTokenGetter() {
   providers: [FlashMessagesService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
