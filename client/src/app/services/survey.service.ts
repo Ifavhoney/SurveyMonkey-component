@@ -1,16 +1,20 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 //importing model (client)
 import { Survey } from "../models/survey";
+import { User } from '../models/user';
+
 @Injectable({
   providedIn: "root"
 })
 
 //endpoint
 export class SurveyService {
-  survey: Survey;
+  private survey: Survey;
+  private user: User;
+  private authToken: any = null;
 
   //connect to API
   private endpoint = "http://localhost:3000/api/survey/";
@@ -26,6 +30,7 @@ export class SurveyService {
 
   constructor(private http: HttpClient) {
     //instantiate
+    this.user = new User();
     this.survey = new Survey();
   }
   public displayTypeSurveys(): Observable<any> {
@@ -34,5 +39,15 @@ export class SurveyService {
       this.endpoint + "create-survey",
       this.httpOptions
     );
+  }
+  public addSurvey(survey: Survey): Observable<any> {
+    this.loadToken();
+    return this.http.post<any>(this.endpoint + 'add', survey, this.httpOptions);
+  }
+
+  private loadToken() {
+    const token = localStorage.getItem('id_token');
+    this.authToken = token;
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', this.authToken);
   }
 }

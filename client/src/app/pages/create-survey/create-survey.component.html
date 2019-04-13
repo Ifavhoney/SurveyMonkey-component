@@ -1,56 +1,61 @@
 <div class="container">
   <div class="jumbotron">
     <h1>{{ title }}</h1>
-  </div>
 
-  <div class="row">
-    <div class="col-md-4">
-      <h3>Select a type</h3>
-    </div>
-    <div class="col-md-4">
-      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-        <button
-          class="btn btn-outline-primary mr-2"
-          id="dropdownManual"
-          ngbDropdownAnchor
-          (focus)="myDrop.open()"
-        >
-          {{ val }}
-        </button>
+    <form  class="form" (submit)="onDetailsPageSubmit()">
+    <div class="row">
 
-        <div ngbDropdownMenu aria-labelledby="dropdownManual">
-          <button
-            *ngFor="let item of survey"
-            (click)="onTitleClick(item)"
-            ngbDropdownItem
-          >
-            {{ item.faculty }}
-          </button>
-        </div>
+      <div class="col-md-4">
+        <h3>Select a type</h3>
       </div>
-    </div>
-    <br />
-    <br />
-    <tr>
-      <td>
-        <button
-          type="button"
-          (click)="addFieldValue()"
-          class="btn btn-outline-success"
-        >
-          Add
-        </button>
-      </td>
-    </tr>
-  </div>
 
-  <tbody>
-    <tr *ngFor="let item of fieldArray; let i = index">
-      <td>
-        <div class="alert alert-info" role="alert">
-          <input type="text" class="form-control" id="usr" />
+        <div class="col-md-4">
+          <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-outline-primary mr-2"
+            id="dropdownManual"
+            ngbDropdownAnchor (focus)="myDrop.open()">{{ val }}
+          </button>
+
+            <div ngbDropdownMenu aria-labelledby="dropdownManual">
+              <button *ngFor="let item of survey"
+              (click)="onTitleClick(item)"
+              ngbDropdownItem>{{ item.faculty }}
+            </button>
+            </div>
+          </div>
         </div>
-      </td>
-    </tr>
-  </tbody>
+        <br />
+        <br />
+        <tr>
+          <td>
+            <button type="button"
+            (click)="addFieldValue()"
+            class="btn btn-outline-success">
+            Add
+          </button>
+          </td>
+        </tr>
+    </div>
+
+    <tbody>
+      <tr *ngFor="let item of fieldArray; let i = index">
+        <td>
+          <div class="alert alert-info" role="alert">
+            <input type="text"
+            class="form-control"
+            id="surveyQuestion"
+            placeholder="Enter survey Question"
+            name="question"
+            [(ngModel)]="survey.question"
+            value="{{ survey.question }}"/>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    <button type="submit" class="btn btn-primary">
+      <i class="fas fa-edit"></i> {{ title }}</button>
+      <a routerLink="/home" class="btn btn-warning">
+        <i class="fas fa-undo"></i> Cancel</a>
+    </form>
+  </div>
 </div>

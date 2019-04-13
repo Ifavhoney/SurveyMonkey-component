@@ -1,9 +1,11 @@
 import { Component, OnInit } from "@angular/core";
+import { SurveyService } from "src/app/services/survey.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { FlashMessagesService } from 'angular2-flash-messages';
 //import service
 //import model
 import { Survey } from "../../models/survey";
-import { SurveyService } from "src/app/services/survey.service";
+
 
 @Component({
   selector: "app-create-survey",
@@ -31,11 +33,14 @@ export class CreateSurveyComponent implements OnInit {
   title: string;
   val: string;
 
+
   survey: Survey[];
+  survey1: Survey;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private flashMessage: FlashMessagesService,
     private service: SurveyService
   ) {}
 
@@ -59,5 +64,21 @@ export class CreateSurveyComponent implements OnInit {
 
   public onTitleClick(btnVal: any): void {
     this.val = btnVal.faculty;
+  }
+
+  onDetailsPageSubmit(): void {
+    switch (this.title) {
+      case 'Create A Survey!':
+      this.service.addSurvey(this.survey1).subscribe(data => {
+        if (data.success) {
+          this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeOut: 3000});
+          this.router.navigate(['/home']);
+        } else {
+          this.flashMessage.show('Add Survey Failed', {cssClass: 'alert-danger', timeOut: 3000});
+          this.router.navigate(['/home']);
+        }
+      });
+      break;
+    }
   }
 }
