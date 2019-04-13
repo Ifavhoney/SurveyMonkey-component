@@ -15,4 +15,6 @@ router.get("/logout", indexController.performLogout);
 
 router.get("/survey/create-survey", surveyController.displaySurvey);
 
+router.post("/survey/create-survey", surveyController.processSurvey);
+
 module.exports = router;

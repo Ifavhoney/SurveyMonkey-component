@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { SurveyService } from "src/app/services/survey.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { FlashMessagesService } from 'angular2-flash-messages';
+import { FlashMessagesService } from "angular2-flash-messages";
 //import service
 //import model
 import { Survey } from "../../models/survey";
-
 
 @Component({
   selector: "app-create-survey",
@@ -33,7 +32,6 @@ export class CreateSurveyComponent implements OnInit {
   title: string;
   val: string;
 
-
   survey: Survey[];
   survey1: Survey;
 
@@ -45,13 +43,17 @@ export class CreateSurveyComponent implements OnInit {
   ) {}
 
   public addFieldValue(index: any) {
+    //basically increase index to increase elements
     this.fieldArray.push(this.newAttribute);
   }
 
   ngOnInit() {
     this.survey = new Array<Survey>();
+    this.survey1 = new Survey();
+
     this.val;
     this.onDisplaySurvey();
+
     this.title = this.route.snapshot.data.title;
   }
   public onDisplaySurvey(): void {
@@ -68,17 +70,24 @@ export class CreateSurveyComponent implements OnInit {
 
   onDetailsPageSubmit(): void {
     switch (this.title) {
-      case 'Create A Survey!':
-      this.service.addSurvey(this.survey1).subscribe(data => {
-        if (data.success) {
-          this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeOut: 3000});
-          this.router.navigate(['/home']);
-        } else {
-          this.flashMessage.show('Add Survey Failed', {cssClass: 'alert-danger', timeOut: 3000});
-          this.router.navigate(['/home']);
-        }
-      });
-      break;
+      case "Create A Survey!":
+        this.survey1.faculty = this.val;
+        this.service.addSurvey(this.survey1).subscribe(data => {
+          if (data.success) {
+            this.flashMessage.show(data.msg, {
+              cssClass: "alert-success",
+              timeOut: 3000
+            });
+            this.router.navigate(["/home"]);
+          } else {
+            this.flashMessage.show("Add Survey Failed", {
+              cssClass: "alert-danger",
+              timeOut: 3000
+            });
+            this.router.navigate(["/home"]);
+          }
+        });
+        break;
     }
   }
 }

@@ -5,8 +5,13 @@ let surveySchema = mongoose.Schema(
     faculty: {
       type: String,
       default: "",
-      trim: true,
-      required: "Faculty is required"
+      trim: true
+    },
+    question: {
+      type: String
+    },
+    answer: {
+      type: String
     },
     modified: {
       type: Date,
