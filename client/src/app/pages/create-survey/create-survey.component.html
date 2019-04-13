@@ -29,19 +29,27 @@
         </div>
       </div>
     </div>
-  </div>
-  <br />
-  <br />
-  <tbody>
-    <tr *ngFor="let item of fieldArray; let i = index">
+    <br />
+    <br />
+    <tr>
       <td>
         <button
           type="button"
-          (onClick)="addText()"
+          (click)="addFieldValue()"
           class="btn btn-outline-success"
         >
           Add
         </button>
+      </td>
+    </tr>
+  </div>
+
+  <tbody>
+    <tr *ngFor="let item of fieldArray; let i = index">
+      <td>
+        <div class="alert alert-info" role="alert">
+          <input type="text" class="form-control" id="usr" />
+        </div>
       </td>
     </tr>
   </tbody>

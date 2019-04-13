@@ -39,12 +39,10 @@ export class CreateSurveyComponent implements OnInit {
     private service: SurveyService
   ) {}
 
-  addFieldValue(index: any) {
+  public addFieldValue(index: any) {
     this.fieldArray.push(this.newAttribute);
   }
-  onEditCloseItems() {
-    this.isEditItems = !this.isEditItems;
-  }
+
   ngOnInit() {
     this.survey = new Array<Survey>();
     this.val;
