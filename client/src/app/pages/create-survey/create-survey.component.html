@@ -1,22 +1,48 @@
 <div class="container">
   <div class="jumbotron">
     <h1>{{ title }}</h1>
-
-    <div class="col-md-2"></div>
   </div>
-  <!-- Example single danger button -->
-  <div class="btn-group">
-    <button
-      type="button"
-      class="btn btn-danger dropdown-toggle"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >
-      Action
-    </button>
-    <div class="dropdown-menu">
-      <li>h</li>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Select a type</h3>
+    </div>
+    <div class="col-md-4">
+      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+        <button
+          class="btn btn-outline-primary mr-2"
+          id="dropdownManual"
+          ngbDropdownAnchor
+          (focus)="myDrop.open()"
+        >
+          {{ val }}
+        </button>
+
+        <div ngbDropdownMenu aria-labelledby="dropdownManual">
+          <button
+            *ngFor="let item of survey"
+            (click)="onTitleClick(item)"
+            ngbDropdownItem
+          >
+            {{ item.faculty }}
+          </button>
+        </div>
+      </div>
     </div>
   </div>
+  <br />
+  <br />
+  <tbody>
+    <tr *ngFor="let item of fieldArray; let i = index">
+      <td>
+        <button
+          type="button"
+          (onClick)="addText()"
+          class="btn btn-outline-success"
+        >
+          Add
+        </button>
+      </td>
+    </tr>
+  </tbody>
 </div>

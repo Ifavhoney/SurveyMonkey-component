@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+//import service
+//import model
+import { Survey } from "../../models/survey";
+import { SurveyService } from "src/app/services/survey.service";
 
 @Component({
   selector: "app-create-survey",
@@ -7,11 +11,55 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./create-survey.component.css"]
 })
 export class CreateSurveyComponent implements OnInit {
-  title: String;
+  //add the field
+  fieldArray: Array<any> = [
+    {
+      name: "Jason"
+    },
+    {
+      name: "hello"
+    }
+  ];
 
-  constructor(private route: ActivatedRoute) {}
+  //text
+  newAttribute: any = {};
+  firstField: Boolean = true;
+  //see if edit
 
+  isEditItems: Boolean = false;
+
+  title: string;
+  val: string;
+
+  survey: Survey[];
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: SurveyService
+  ) {}
+
+  addFieldValue(index: any) {
+    this.fieldArray.push(this.newAttribute);
+  }
+  onEditCloseItems() {
+    this.isEditItems = !this.isEditItems;
+  }
   ngOnInit() {
+    this.survey = new Array<Survey>();
+    this.val;
+    this.onDisplaySurvey();
     this.title = this.route.snapshot.data.title;
+  }
+  public onDisplaySurvey(): void {
+    this.service.displayTypeSurveys().subscribe(data => {
+      if (data.info) {
+        this.survey = data.info;
+      }
+    });
+  }
+
+  public onTitleClick(btnVal: any): void {
+    this.val = btnVal.faculty;
   }
 }

@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./partials/header/header.component";
@@ -16,6 +17,7 @@ import {
   FlashMessagesService
 } from "angular2-flash-messages";
 import { AuthService } from "./services/auth.service";
+import { SurveyService } from "./services/survey.service";
 import {
   JwtModule,
   JwtHelperService,
@@ -47,6 +49,7 @@ export function jwtTokenGetter() {
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
     FlashMessagesModule,
     JwtModule.forRoot({
       config: {
