@@ -29,6 +29,7 @@ import { SurveyComponent } from "./pages/survey/survey.component";
 import { CreateSurveyComponent } from "./pages/create-survey/create-survey.component";
 import { CreateSurveyAnswerComponent } from './pages/create-survey-answer/create-survey-answer.component';
 import { DisplaySurveyListComponent } from './pages/display-survey-list/display-survey-list.component';
+import { DeleteSurveyComponent } from './pages/delete-survey/delete-survey.component';
 
 export function jwtTokenGetter() {
   return localStorage.getItem("id_token");
@@ -46,7 +47,8 @@ export function jwtTokenGetter() {
     SurveyComponent,
     CreateSurveyComponent,
     CreateSurveyAnswerComponent,
-    DisplaySurveyListComponent
+    DisplaySurveyListComponent,
+    DeleteSurveyComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { RegisterComponent } from "./pages/register/register.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { SurveyComponent } from "./pages/survey/survey.component";
 import { CreateSurveyComponent } from "./pages/create-survey/create-survey.component";
+import { DisplaySurveyListComponent } from './pages/display-survey-list/display-survey-list.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent, data: { title: "Home" } },
@@ -18,6 +19,7 @@ const routes: Routes = [
   },
   { path: "login", component: LoginComponent, data: { title: "Login" } },
   { path: "logout", redirectTo: "/login", pathMatch: "full" },
+  { path: "survey/display-survey", component: DisplaySurveyListComponent, data: {title: 'Survey List'}},
 
   {
     path: "survey/create-survey",

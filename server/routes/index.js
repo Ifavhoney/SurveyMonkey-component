@@ -17,4 +17,9 @@ router.get("/survey/create-survey", surveyController.displaySurvey);
 
 router.post("/survey/create-survey", surveyController.processSurvey);
 
+router.get("/survey/display-survey", surveyController.displaySurvey);
+
+router.get("/survey/display-survey", surveyController.processEditPage);
+
+
 module.exports = router;
