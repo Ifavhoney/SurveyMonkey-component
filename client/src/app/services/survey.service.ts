@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+//PUSH IT STOP BEING WASTE, P U S H IT OR SUFFERRRR,
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 
@@ -48,6 +49,12 @@ export class SurveyService {
       this.httpOptions
     );
   }
+
+  public getList(): Observable<any> {
+    this.loadToken();
+    return this.http.get<any>(this.endpoint, this.httpOptions);
+  }
+
 
   private loadToken() {
     const token = localStorage.getItem("id_token");

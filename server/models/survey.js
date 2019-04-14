@@ -2,20 +2,26 @@ let mongoose = require("mongoose");
 
 let surveySchema = mongoose.Schema(
   {
-    faculty: {
-      type: String,
-      default: "",
-      trim: true
-    },
-    question: {
+    title: {
       type: String
     },
-    answer: {
+    question_1: {
       type: String
     },
-    modified: {
-      type: Date,
-      default: Date.now
+    question_2: {
+      type: String
+    },
+    question_3: {
+      type: String
+    },
+    question_4: {
+      type: String
+    },
+    question_5: {
+      type: String
+    },
+    status: {
+      type: String
     }
   },
   {
@@ -24,3 +30,4 @@ let surveySchema = mongoose.Schema(
 );
 
 module.exports.survey = mongoose.model("Survey", surveySchema);
+

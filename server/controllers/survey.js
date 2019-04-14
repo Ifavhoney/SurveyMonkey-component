@@ -20,11 +20,15 @@ module.exports.displaySurvey = (req, res, next) => {
 };
 
 module.exports.processSurvey = (req, res, next) => {
+  console.log(req.body);
   let surveyFields = Survey({
-    faculty: req.body.faculty,
-    question: req.body.question,
-    answer: req.body.answer,
-    modified: req.body.modified
+    "title": req.body.title,
+    "question_1": req.body.q1,
+    "question_2": req.body.q2,
+    "question_3": req.body.q3,
+    "question_4": req.body.q4,
+    "question_5": req.body.q5,
+    "status": "active"
   });
 
   Survey.create(surveyFields, (err, val) => {
@@ -33,8 +37,9 @@ module.exports.processSurvey = (req, res, next) => {
     } else {
       res.json({
         success: true,
-        msg: "Successfullt added Survey"
+        msg: "Successfully added Survey"
       });
     }
   });
 };
+

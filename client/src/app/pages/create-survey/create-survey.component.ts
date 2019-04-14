@@ -12,46 +12,22 @@ import { Survey } from "../../models/survey";
   styleUrls: ["./create-survey.component.css"]
 })
 export class CreateSurveyComponent implements OnInit {
-  //add the field
-  fieldArray: Array<any> = [
-    {
-      name: "Jason"
-    },
-    {
-      name: "hello"
-    }
-  ];
-
-  //text
-  newAttribute: any = {};
-  firstField: Boolean = true;
-  //see if edit
-
-  isEditItems: Boolean = false;
 
   title: string;
-  val: string;
-
-  survey: Survey[];
-  survey1: Survey;
+  survey: Survey;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private flashMessage: FlashMessagesService,
     private service: SurveyService
-  ) {}
+  ) { }
 
-  public addFieldValue(index: any) {
-    //basically increase index to increase elements
-    this.fieldArray.push(this.newAttribute);
-  }
+
 
   ngOnInit() {
-    this.survey = new Array<Survey>();
-    this.survey1 = new Survey();
+    this.survey = new Survey();
 
-    this.val;
     this.onDisplaySurvey();
 
     this.title = this.route.snapshot.data.title;
@@ -64,15 +40,11 @@ export class CreateSurveyComponent implements OnInit {
     });
   }
 
-  public onTitleClick(btnVal: any): void {
-    this.val = btnVal.faculty;
-  }
-
   onDetailsPageSubmit(): void {
     switch (this.title) {
       case "Create A Survey!":
-        this.survey1.faculty = this.val;
-        this.service.addSurvey(this.survey1).subscribe(data => {
+        // this.survey1.faculty = this.val;
+        this.service.addSurvey(this.survey).subscribe(data => {
           if (data.success) {
             this.flashMessage.show(data.msg, {
               cssClass: "alert-success",

@@ -1,101 +1,58 @@
 <div class="container">
-  <div class="jumbotron">
-    <h1>{{ title }}</h1>
+  <br />
+  <div class="jumbotron" id="bodycolour">
+    <div class="container">
+      <form class="form" (submit)="onDetailsPageSubmit()">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <h1>Create a new Survey</h1>
 
-    <form class="form" (submit)="onDetailsPageSubmit()">
-      <div class="row">
-        <div class="col-md-4">
-          <h3>Select a type</h3>
-        </div>
+            <div class="form-group">
+              <label for="TaskNameTextField">Survey Title:</label>
+              <input type="text" class="form-control" id="txt_title" placeholder="" name="title"
+                [(ngModel)]="survey.title" value="{{ survey.title }}" required />
 
-        <div class="col-md-4">
-          <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-            <button
-              type="button"
-              class="btn btn-outline-primary mr-2"
-              id="dropdownManual"
-              ngbDropdownAnchor
-              (focus)="myDrop.open()"
-            >
-              {{ val }}
-            </button>
+              <div class="form-group">
+                <label for="TaskNameTextField">Question 1:</label>
+                <input type="text" class="form-control" id="txt_q1" placeholder="" name="q1"
+                  [(ngModel)]="survey.question_1" value="{{ survey.question_1 }}" required />
+              </div>
 
-            <div ngbDropdownMenu aria-labelledby="dropdownManual">
-              <button
-                type="button"
-                *ngFor="let item of survey"
-                (click)="onTitleClick(item)"
-                ngbDropdownItem
-              >
-                {{ item.faculty }}
-              </button>
+              <div class="form-group">
+                <label for="TaskNameTextField">Question 2:</label>
+                <input type="text" class="form-control" id="txt_q2" placeholder="" name="q2"
+                  [(ngModel)]="survey.question_2" value="{{ survey.question_2 }}" required />
+              </div>
+
+              <div class="form-group">
+                <label for="TaskNameTextField">Question 3:</label>
+                <input type="text" class="form-control" id="txt_q3" placeholder="" name="q3"
+                  [(ngModel)]="survey.question_3" value="{{ survey.question_3 }}" required />
+              </div>
+
+              <div class="form-group">
+                <label for="TaskNameTextField">Question 4:</label>
+                <input type="text" class="form-control" id="txt_q4" placeholder="" name="q4"
+                  [(ngModel)]="survey.question_4" value="{{ survey.question_4 }}" required />
+              </div>
+
+              <div class="form-group">
+                <label for="TaskNameTextField">Question 5:</label>
+                <input type="text" class="form-control" id="txt_q5" placeholder="" name="q5"
+                  [(ngModel)]="survey.question_5" value="{{ survey.question_5 }}" required />
+              </div>
+
+              <div>
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-edit"></i>Add Survey
+                </button>
+                <a routerLink="/" class="btn btn-warning">
+                  <i class="fas fa-undo"></i> Cancel</a>
+              </div>
             </div>
           </div>
         </div>
-        <br />
-        <br />
-        <tr>
-          <td>
-            <button
-              type="button"
-              (click)="addFieldValue()"
-              class="btn btn-outline-success"
-            >
-              Add
-            </button>
-          </td>
-        </tr>
-      </div>
-
-      <tbody>
-        <tr>
-          <td>
-            <h4>Question</h4>
-          </td>
-          <td class="width: 100%">
-            <h4 class="col text-right">Answer</h4>
-          </td>
-        </tr>
-      </tbody>
-
-      <tbody>
-        <tr *ngFor="let item of fieldArray; let i = index">
-          <td>
-            {{ i + 1 }}
-          </td>
-
-          <td>
-            <div class="alert alert-info" role="alert">
-              <input
-                type="text"
-                [(ngModel)]="survey1.question"
-                class="form-control"
-                placeholder="Enter survey Question"
-                name="question"
-              />
-            </div>
-          </td>
-
-          <td>
-            <div class="alert alert-info" role="alert">
-              <input
-                type="text"
-                class="form-control"
-                [(ngModel)]="survey1.answer"
-                id="surveyQuestion"
-                placeholder="Enter Answer"
-                name="Answer"
-              />
-            </div>
-          </td>
-        </tr>
-      </tbody>
-      <button type="submit" class="btn btn-primary">
-        <i class="fas fa-edit"></i> {{ title }}
-      </button>
-      <a routerLink="/home" class="btn btn-warning">
-        <i class="fas fa-undo"></i> Cancel</a
-      >
-    </form>
+      </form>
+    </div>
   </div>
 </div>
