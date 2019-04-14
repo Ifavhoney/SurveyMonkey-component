@@ -5,19 +5,19 @@ let surveySchema = mongoose.Schema(
     title: {
       type: String
     },
-    question_1: {
+    question1: {
       type: String
     },
-    question_2: {
+    question2: {
       type: String
     },
-    question_3: {
+    question3: {
       type: String
     },
-    question_4: {
+    question4: {
       type: String
     },
-    question_5: {
+    question5: {
       type: String
     },
     status: {
@@ -30,4 +30,3 @@ let surveySchema = mongoose.Schema(
 );
 
 module.exports.survey = mongoose.model("Survey", surveySchema);
-

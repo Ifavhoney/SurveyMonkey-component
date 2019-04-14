@@ -12,7 +12,6 @@ import { Survey } from "../../models/survey";
   styleUrls: ["./create-survey.component.css"]
 })
 export class CreateSurveyComponent implements OnInit {
-
   title: string;
   survey: Survey;
 
@@ -21,14 +20,12 @@ export class CreateSurveyComponent implements OnInit {
     private router: Router,
     private flashMessage: FlashMessagesService,
     private service: SurveyService
-  ) { }
-
-
+  ) {}
 
   ngOnInit() {
     this.survey = new Survey();
 
-    this.onDisplaySurvey();
+    //this.onDisplaySurvey();
 
     this.title = this.route.snapshot.data.title;
   }
@@ -50,7 +47,7 @@ export class CreateSurveyComponent implements OnInit {
               cssClass: "alert-success",
               timeOut: 3000
             });
-            this.router.navigate(["/home"]);
+            this.router.navigate(["/survey/create-survey"]);
           } else {
             this.flashMessage.show("Add Survey Failed", {
               cssClass: "alert-danger",
