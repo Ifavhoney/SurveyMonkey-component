@@ -9,6 +9,7 @@ import { LoginComponent } from "./pages/login/login.component";
 import { SurveyComponent } from "./pages/survey/survey.component";
 import { CreateSurveyComponent } from "./pages/create-survey/create-survey.component";
 import { DisplaySurveyListComponent } from './pages/display-survey-list/display-survey-list.component';
+import { DeleteSurveyComponent } from './pages/delete-survey/delete-survey.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent, data: { title: "Home" } },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent, data: { title: "Login" } },
   { path: "logout", redirectTo: "/login", pathMatch: "full" },
   { path: "survey/display-survey", component: DisplaySurveyListComponent, data: {title: 'Survey List'}},
+  {path:  "survey/display-survey/delete/:id", component: DeleteSurveyComponent, data: {title: "Create A Survey!"}},
 
   {
     path: "survey/create-survey",

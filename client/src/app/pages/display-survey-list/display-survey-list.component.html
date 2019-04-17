@@ -10,7 +10,6 @@
               <tr>
                   <th class="text-center">Title</th>
                   <th class="text-center">Status</th>
-                  <!-- <th class="text-center">Age</th> -->
                   <th class="text-center"></th>
                   <th class="text-center"></th>
               </tr>
@@ -19,17 +18,16 @@
                   <tr *ngFor="let survey of surveys">
                       <td class="text-center">{{ survey.title}}</td>
                       <td class="text-center">{{ survey.status }}</td>
-                      <!-- <td class="text-center">{{ contact.age }}</td> -->
 
                       <td class="text-center">
-                      <a routerLink="/survey/display-survey/{{ survey._id }}"
+                      <a routerLink="/survey/display-survey/edit/{{ survey._id }}"
                           class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Edit</a>
                       </td>
 
                       <td class="text-center">
-                              <a routerLink="/survey/display-survey/delete/{{ survey._id }}" (click)="onDeleteClick()"
-                                  class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
-                              </td>
+                        <a routerLink="/survey/display-survey/delete/{{ survey._id }}" (click)="onDeleteClick()"
+                            class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                        </td>
                   </tr>
           </table>
 

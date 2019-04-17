@@ -43,7 +43,7 @@ export class SurveyService {
   }
 
   public addSurvey(survey: Survey): Observable<any> {
-    // this.loadToken();
+    //this.loadToken();
     return this.http.post<any>(
       this.endpoint + "create-survey",
       survey,
@@ -60,9 +60,14 @@ export class SurveyService {
       this.httpOptions);
   }
 
+  public editSurvey(survey: Survey): Observable<any> {
+    this.loadToken();
+    return this.http.post<any>(this.endpoint + 'edit/' + survey._id, survey, this.httpOptions);
+  }
+
   public deleteSurvey(survey: Survey): Observable<any> {
     // this.loadToken();
-    return this.http.get<any>(this.endpoint + 'delete/' + survey._id, this.httpOptions);
+    return this.http.get<any>(this.endpoint + 'display-survey/delete/' + survey._id, this.httpOptions);
   }
 
 

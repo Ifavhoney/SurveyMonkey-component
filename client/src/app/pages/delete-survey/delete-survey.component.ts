@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SurveyService } from "src/app/services/survey.service";
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 //import model
 import { Survey } from "../../models/survey";
@@ -16,13 +16,21 @@ export class DeleteSurveyComponent implements OnInit {
   survey: Survey;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private surveyListService: SurveyService,
     private flashMessage: FlashMessagesService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.title =  this.activatedRoute.snapshot.data.title;
     this.survey = new Survey();
+
+
+    this.activatedRoute.params.subscribe(params => {
+      this.survey._id = params.id;
+    });
+
     this.deleteSurvey(this.survey);
   }
 

@@ -21,5 +21,8 @@ router.get("/survey/display-survey", surveyController.displaySurvey);
 
 router.get("/survey/display-survey", surveyController.processEditPage);
 
+/* GET request to perform the delete action */
+router.get('/survey/display-survey/delete/:id', surveyController.performDelete);
+
 
 module.exports = router;
