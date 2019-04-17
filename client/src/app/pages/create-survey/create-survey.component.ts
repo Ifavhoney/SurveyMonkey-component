@@ -1,10 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { SurveyService } from "src/app/services/survey.service";
+
 import { ActivatedRoute, Router } from "@angular/router";
 import { FlashMessagesService } from "angular2-flash-messages";
 //import service
 //import model
 import { Survey } from "../../models/survey";
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: "app-create-survey",
@@ -14,18 +17,22 @@ import { Survey } from "../../models/survey";
 export class CreateSurveyComponent implements OnInit {
   title: string;
   survey: Survey;
+  user: User;
+
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private flashMessage: FlashMessagesService,
-    private service: SurveyService
+    private service: SurveyService, private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.survey = new Survey();
 
     //this.onDisplaySurvey();
+
+    this.user = new User();
 
     this.title = this.route.snapshot.data.title;
   }
@@ -35,13 +42,15 @@ export class CreateSurveyComponent implements OnInit {
         this.survey = data.info;
       }
     });
+
   }
+
 
   onDetailsPageSubmit(): void {
     switch (this.title) {
       case "Create A Survey!":
         // this.survey1.faculty = this.val;
-        this.service.addSurvey(this.survey).subscribe(data => {
+        this.service.addSurvey(this.survey, this.user).subscribe(data => {
           if (data.success) {
             this.flashMessage.show(data.msg, {
               cssClass: "alert-success",
@@ -59,4 +68,17 @@ export class CreateSurveyComponent implements OnInit {
         break;
     }
   }
+
+  isLoggedIn(): boolean {
+    const result = this.authService.loggedIn();
+    if(result) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+     
+
+    }
+    return result;
+  }
+
+
+ 
 }

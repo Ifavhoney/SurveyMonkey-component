@@ -1,6 +1,7 @@
 export class Survey {
   _id: string;
   title: string;
+  username: string;
   question_1: string;
   question_2: string;
   question_3: string;

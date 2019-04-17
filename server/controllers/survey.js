@@ -1,13 +1,16 @@
 let express = require("express");
 let passport = require("passport");
+var session = require('express-session');
 
 let DB = require("../config/db");
 
 let surveyModel = require("../models/survey");
+let books = require("./index")
 //get exported model
 let Survey = surveyModel.survey;
 
 module.exports.displaySurvey = (req, res, next) => {
+
   Survey.find((err, val) => {
     if (err) {
       return next(err);
@@ -20,8 +23,17 @@ module.exports.displaySurvey = (req, res, next) => {
 };
 
 module.exports.processSurvey = (req, res, next) => {
+
+  
+ // let recommendedBooks = books.getBookRecommendations();
+ 
+
+ //console.log(recommendedBooks)
+ 
+ //username bodied on Angular side
   let surveyFields = Survey({
     title: req.body.title,
+    username: req.body.username,
     question1: req.body.question1,
     question2: req.body.question2,
     question3: req.body.question3,
@@ -29,7 +41,7 @@ module.exports.processSurvey = (req, res, next) => {
     question5: req.body.question5,
     status: req.body.status
   });
-  console.log(req.body.question1);
+  
 
   Survey.create(surveyFields, (err, val) => {
     if (err) {

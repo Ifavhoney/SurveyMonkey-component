@@ -6,6 +6,7 @@ let passport = require("passport");
 let jwt = require('jsonwebtoken');
 let DB = require('../config/db');
 
+
 // define the User Model
 let userModel = require("../models/user");
 let User = userModel.User; // alias
@@ -35,9 +36,15 @@ module.exports.processLoginPage = (req, res, next) => {
         email: user.email
       }
 
+      // console.log(payload)
+     //module.exports did not work
+   //  returnPayload(payload);
+
       const authToken = jwt.sign(payload, DB.secret, {
         expiresIn: 604800 // 1 Week
       });
+
+      //console.log(payload)
 
 
       return res.json({success: true, msg: 'User Logged in Successfully!', user: {
@@ -49,8 +56,30 @@ module.exports.processLoginPage = (req, res, next) => {
 
 
     });
-  })(req, res, next);
+  }
+  
+  
+  )(req,res,next)
 }
+
+function returnPayload(){
+  return this.payload;
+}
+
+
+// returns a list of good books TEST - WORKS
+function getBookRecommendations() {  
+  return [
+    
+      {id: 1, title: "The Guards", author: "Ken Bruen"},
+      {id: 2, title: "The Stand", author: "Steven King"},
+      {id: 3, title: "The Postman Always Rings Twice", author: "James M. Cain"}
+  ];
+}
+module.exports.getBookRecommendations = getBookRecommendations;  
+
+
+module.exports.returnPayload = returnPayload;
 
 
 module.exports.processRegisterPage = (req, res, next) => {
@@ -61,7 +90,7 @@ module.exports.processRegisterPage = (req, res, next) => {
     email: req.body.email,
     displayName: req.body.displayName
   });
-
+ 
   User.register(newUser, req.body.password, (err) => {
     if (err) {
       console.log("Error: Inserting New User");
@@ -77,6 +106,8 @@ module.exports.processRegisterPage = (req, res, next) => {
     }
   });
 };
+
+
 
 module.exports.performLogout = (req, res, next) => {
   req.logout();

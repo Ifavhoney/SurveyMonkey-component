@@ -41,7 +41,11 @@ export class SurveyService {
       this.httpOptions
     );
   }
-  public addSurvey(survey: Survey): Observable<any> {
+  public addSurvey(survey: Survey, user: User): Observable<any> {
+  survey.username = user.username;
+   // console.log(survey.username);
+
+
     //this.loadToken();
     return this.http.post<any>(
       this.endpoint + "create-survey",

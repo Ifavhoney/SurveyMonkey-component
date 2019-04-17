@@ -5,6 +5,10 @@ let surveySchema = mongoose.Schema(
     title: {
       type: String
     },
+    username: {
+      type: String
+    },
+
     question1: {
       type: String
     },
