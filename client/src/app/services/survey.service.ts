@@ -13,7 +13,6 @@ import { User } from "../models/user";
 
 //endpoint
 export class SurveyService {
-  private survey: Survey;
   private user: User;
   private authToken: any = null;
 
@@ -32,7 +31,6 @@ export class SurveyService {
   constructor(private http: HttpClient) {
     //instantiate
     this.user = new User();
-    this.survey = new Survey();
   }
 
   // public displayTypeSurveys(): Observable<any> {
@@ -60,11 +58,17 @@ export class SurveyService {
     );
   }
 
+  public getSurvey(survey: Survey): Observable<any> {
+    return this.http.get<any>(this.endpoint + 'display-survey/edit/' + survey._id, this.httpOptions);
+  }
+
+  public editSurvey(survey: Survey): Observable<any> {
+    return this.http.post<any>(this.endpoint + 'display-survey/edit/' + survey._id, survey, this.httpOptions);
+  }
+
   public deleteSurvey(survey: Survey): Observable<any> {
     return this.http.get<any>(this.endpoint + "display-survey/delete/" + survey._id, this.httpOptions);
   }
-
-
 
 
   private loadToken() {

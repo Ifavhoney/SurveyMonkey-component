@@ -18,10 +18,10 @@ router.get("/survey/display-survey", surveyController.displaySurvey);
 
 router.post("/survey/display-survey/add", surveyController.processSurvey);
 
-router.post("/survey/display-survey/delete/:id", surveyController.processDeleteSurvey);
+router.get("/survey/display-survey/edit/:id", surveyController.displayEditSurvey);
 
-// router.get("/survey/create-survey", surveyController.);
+router.post("/survey/display-survey/edit/:id", surveyController.processEditSurvey);
 
-// router.get("/survey/create-survey", surveyController.);
+router.get("/survey/display-survey/delete/:id", surveyController.processDeleteSurvey);
 
 module.exports = router;

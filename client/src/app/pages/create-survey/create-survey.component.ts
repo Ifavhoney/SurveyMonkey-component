@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { SurveyService } from "src/app/services/survey.service";
-
 import { ActivatedRoute, Router } from "@angular/router";
 import { FlashMessagesService } from "angular2-flash-messages";
 //import service
@@ -29,21 +28,17 @@ export class CreateSurveyComponent implements OnInit {
 
   ngOnInit() {
     this.survey = new Survey();
-
-    //this.onDisplaySurvey();
-
     this.user = new User();
-
     this.title = this.route.snapshot.data.title;
-  }
-  // public onDisplaySurvey(): void {
-  //   this.service.displayTypeSurveys().subscribe(data => {
-  //     if (data.info) {
-  //       this.survey = data.info;
-  //     }
-  //   });
 
-  // }
+    this.route.params.subscribe(params => {
+      this.survey._id = params.id;
+    });
+
+    if (this.title === 'Edit Survey') {
+      this.getSurvey(this.survey);
+    }
+  }
 
 
   onDetailsPageSubmit(): void {
@@ -65,7 +60,24 @@ export class CreateSurveyComponent implements OnInit {
           }
         });
         break;
+      case "Edit Survey":
+        this.service.editSurvey(this.survey).subscribe(data => {
+          if (data.success) {
+            this.flashMessage.show(data.msg, { cssClass: 'alert-success', timeOut: 3000 });
+            this.router.navigate(['/survey/display-survey']);
+          } else {
+            this.flashMessage.show('Edit survey fail', { cssClass: 'alert-danger', timeOut: 3000 });
+            this.router.navigate(['/survey/display-survey']);
+          }
+        });
+        break;
     }
+  }
+
+  private getSurvey(survey: Survey): void {
+    this.service.getSurvey(survey).subscribe(data => {
+      this.survey = data.survey;
+    })
   }
 
   isLoggedIn(): boolean {
