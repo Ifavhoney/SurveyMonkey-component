@@ -8,18 +8,9 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/"
-      ><img src="assets/logo.png" Style="height: 50px; width: 50px"
-    /></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <a class="navbar-brand" href="/"><img src="assets/logo.png" Style="height: 50px; width: 50px" /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -27,39 +18,30 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active"></li>
         <li class="nav-item">
-          <a class="nav-link" href="/"
-            ><i class="fa fa-lg fa-home"></i> Home
-            <span class="sr-only">(current)</span></a
-          >
+          <a class="nav-link" href="/"><i class="fa fa-lg fa-home"></i> Home
+            <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" routerLink="/survey/create-survey"
-              ><i class="fa fa-lg fa-home"></i> Survey
-              <span class="sr-only">(current)</span>
-              </a
-            >
-          
-          </li>
-  
+          <a class="nav-link" routerLink="/survey/display-survey"><i class="fa fa-lg fa-home"></i> Survey
+            <span class="sr-only">(current)</span>
+          </a>
 
-        <li
-          *ngIf="isLoggedIn()"
-          class="navbar-text text-success ml-5 mr-5 d-none d-lg-inline"
-        >
+        </li>
+
+
+        <li *ngIf="isLoggedIn()" class="navbar-text text-success ml-5 mr-5 d-none d-lg-inline">
           <i class="fas fa-lg fa-user"></i> Welcome, {{ user.displayName }}
         </li>
 
         <li *ngIf="isLoggedIn()" class="nav-item">
           <a (click)="onLogoutClick()" routerLink="/logout" class="nav-link">
-            <i class="fas fa-lg fa-sign-out-alt"></i> Logout</a
-          >
+            <i class="fas fa-lg fa-sign-out-alt"></i> Logout</a>
         </li>
 
         <li *ngIf="!isLoggedIn()" class="nav-item">
           <a routerLink="/login" class="nav-link">
-            <i class="fas fa-lg fa-sign-in-alt"></i> Login</a
-          >
+            <i class="fas fa-lg fa-sign-in-alt"></i> Login</a>
         </li>
       </ul>
     </div>

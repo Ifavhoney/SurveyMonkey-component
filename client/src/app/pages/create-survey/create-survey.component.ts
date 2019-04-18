@@ -25,7 +25,7 @@ export class CreateSurveyComponent implements OnInit {
     private router: Router,
     private flashMessage: FlashMessagesService,
     private service: SurveyService, private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.survey = new Survey();
@@ -36,27 +36,26 @@ export class CreateSurveyComponent implements OnInit {
 
     this.title = this.route.snapshot.data.title;
   }
-  public onDisplaySurvey(): void {
-    this.service.displayTypeSurveys().subscribe(data => {
-      if (data.info) {
-        this.survey = data.info;
-      }
-    });
+  // public onDisplaySurvey(): void {
+  //   this.service.displayTypeSurveys().subscribe(data => {
+  //     if (data.info) {
+  //       this.survey = data.info;
+  //     }
+  //   });
 
-  }
+  // }
 
 
   onDetailsPageSubmit(): void {
     switch (this.title) {
       case "Create A Survey!":
-        // this.survey1.faculty = this.val;
         this.service.addSurvey(this.survey, this.user).subscribe(data => {
           if (data.success) {
             this.flashMessage.show(data.msg, {
               cssClass: "alert-success",
               timeOut: 3000
             });
-            this.router.navigate(["/survey/create-survey"]);
+            this.router.navigate(["/survey/display-survey"]);
           } else {
             this.flashMessage.show("Add Survey Failed", {
               cssClass: "alert-danger",
@@ -71,14 +70,14 @@ export class CreateSurveyComponent implements OnInit {
 
   isLoggedIn(): boolean {
     const result = this.authService.loggedIn();
-    if(result) {
+    if (result) {
       this.user = JSON.parse(localStorage.getItem('user'));
-     
+
 
     }
     return result;
   }
 
 
- 
+
 }

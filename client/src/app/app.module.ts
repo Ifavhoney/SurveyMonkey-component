@@ -29,6 +29,7 @@ import { SurveyComponent } from "./pages/survey/survey.component";
 import { CreateSurveyComponent } from "./pages/create-survey/create-survey.component";
 import { CreateSurveyAnswerComponent } from './pages/create-survey-answer/create-survey-answer.component';
 import { DisplaySurveyListComponent } from './pages/display-survey-list/display-survey-list.component';
+import { CreateSurveyDeleteComponent } from './pages/create-survey-delete/create-survey-delete.component';
 
 export function jwtTokenGetter() {
   return localStorage.getItem("id_token");
@@ -46,7 +47,8 @@ export function jwtTokenGetter() {
     SurveyComponent,
     CreateSurveyComponent,
     CreateSurveyAnswerComponent,
-    DisplaySurveyListComponent
+    DisplaySurveyListComponent,
+    CreateSurveyDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -64,4 +66,4 @@ export function jwtTokenGetter() {
   providers: [FlashMessagesService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

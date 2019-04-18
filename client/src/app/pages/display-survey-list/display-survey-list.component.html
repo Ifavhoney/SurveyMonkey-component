@@ -1,3 +1,40 @@
-<p>
-  display-survey-list works!
-</p>
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-mid-offset-3 col-md-9">
+        <h1>Survey List</h1>
+        <a routerLink="/survey/display-survey/add" class="btn btn-primary " role="button" aria-pressed="true">
+          <i class="fas fa-user-plus"></i>Add a contact</a>
+        <br>
+        <table class="table table-bordered table-striped table-hover">
+          <!-- Header Row-->
+
+          <tr>
+            <th class="text-centered">Survey Name</th>
+            <th class="text-centered">User</th>
+            <th class="text-centered">Status</th>
+            <th class="text-centered"></th>
+            <th class="text-centered"></th>
+          </tr>
+
+          <!-- Repeatable Template Row -->
+          <tr *ngFor="let survey of surveys">
+            <td class="text-center">{{ survey.title}}</td>
+            <td class="text-center">{{ survey.username}}</td>
+            <td class="text-center">{{ survey.status }}</td>
+
+            <td class="text-center">
+              <a routerLink="/survey/display-survey/edit/{{ survey._id }}" class="btn btn-primary"><i
+                  class="fas fa-pencil-alt"></i> Edit</a>
+            </td>
+
+            <td class="text-center">
+              <a routerLink="/survey/display-survey/delete/{{ survey._id }}" (click)="onDeleteClick()"
+                class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

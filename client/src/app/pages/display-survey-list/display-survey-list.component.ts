@@ -25,9 +25,16 @@ export class DisplaySurveyListComponent implements OnInit {
     this.displaySurveyList();
   }
 
+  private onDeleteClick(): void {
+    if (!confirm('Are Your Sure?')) {
+      this.router.navigate(['/survey/display-survey']);
+    }
+  }
+
   displaySurveyList(): void {
     this.surveyListService.getList().subscribe(data => {
       if (data.success) {
+        console.log("hello" + data);
         this.surveys = data.surveyList;
       } else {
         this.flashMessage.show('User must be logged-in', { cssClass: 'alert-danger', timeOut: 3000 });

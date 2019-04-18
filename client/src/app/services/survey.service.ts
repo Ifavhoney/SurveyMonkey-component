@@ -34,30 +34,37 @@ export class SurveyService {
     this.user = new User();
     this.survey = new Survey();
   }
-  public displayTypeSurveys(): Observable<any> {
-    //returns types of surveys
-    return this.http.get<any>(
-      this.endpoint + "create-survey",
-      this.httpOptions
-    );
-  }
-  public addSurvey(survey: Survey, user: User): Observable<any> {
-  survey.username = user.username;
-   // console.log(survey.username);
 
+  // public displayTypeSurveys(): Observable<any> {
+  //   //returns types of surveys
+  //   return this.http.get<any>(
+  //     this.endpoint + "create-survey",
+  //     this.httpOptions
+  //   );
+  // }
+
+  public getList(): Observable<any> {
+    //this.loadToken();
+    return this.http.get<any>(this.endpoint + "display-survey", this.httpOptions);
+  }
+
+  public addSurvey(survey: Survey, user: User): Observable<any> {
+    survey.username = user.username;
+    // console.log(survey.username);
 
     //this.loadToken();
     return this.http.post<any>(
-      this.endpoint + "create-survey",
+      this.endpoint + "display-survey/add",
       survey,
       this.httpOptions
     );
   }
 
-  public getList(): Observable<any> {
-    this.loadToken();
-    return this.http.get<any>(this.endpoint, this.httpOptions);
+  public deleteSurvey(survey: Survey): Observable<any> {
+    return this.http.get<any>(this.endpoint + "display-survey/delete/" + survey._id, this.httpOptions);
   }
+
+
 
 
   private loadToken() {

@@ -14,8 +14,14 @@ router.post("/register", indexController.processRegisterPage);
 /* GET - perform user logout */
 router.get("/logout", indexController.performLogout);
 
-router.get("/survey/create-survey", surveyController.displaySurvey);
+router.get("/survey/display-survey", surveyController.displaySurvey);
 
-router.post("/survey/create-survey", surveyController.processSurvey);
+router.post("/survey/display-survey/add", surveyController.processSurvey);
+
+router.post("/survey/display-survey/delete/:id", surveyController.processDeleteSurvey);
+
+// router.get("/survey/create-survey", surveyController.);
+
+// router.get("/survey/create-survey", surveyController.);
 
 module.exports = router;

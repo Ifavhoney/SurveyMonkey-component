@@ -11,26 +11,19 @@ let Survey = surveyModel.survey;
 
 module.exports.displaySurvey = (req, res, next) => {
 
-  Survey.find((err, val) => {
+  Survey.find((err, surveyList) => {
     if (err) {
-      return next(err);
+      return console.error(err);
     } else {
-      res.json({
-        info: val
-      });
+      res.json({ success: true, msg: 'Contact List Displayed', surveyList: surveyList, user: req.user });
+
     }
   });
 };
 
 module.exports.processSurvey = (req, res, next) => {
 
-  
- // let recommendedBooks = books.getBookRecommendations();
- 
-
- //console.log(recommendedBooks)
- 
- //username bodied on Angular side
+  //username bodied on Angular side
   let surveyFields = Survey({
     title: req.body.title,
     username: req.body.username,
@@ -39,9 +32,9 @@ module.exports.processSurvey = (req, res, next) => {
     question3: req.body.question3,
     question4: req.body.question4,
     question5: req.body.question5,
-    status: req.body.status
+    status: "active"
   });
-  
+
 
   Survey.create(surveyFields, (err, val) => {
     if (err) {
@@ -54,3 +47,19 @@ module.exports.processSurvey = (req, res, next) => {
     }
   });
 };
+
+module.exports.processDeleteSurvey = (req, res, next) => {
+  let id = req.params.id;
+
+  Survey.remove({ _id: id }, (err) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    }
+    else {
+      res.json({ success: true, msg: 'Survey Deleted!' });
+    }
+  });
+}
+
+
