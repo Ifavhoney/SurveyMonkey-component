@@ -1,0 +1,59 @@
+<div class="container">
+  <br />
+  <div class="jumbotron" id="bodycolour">
+    <div class="container">
+      <form class="form" (submit)="onDetailsPageSubmit()">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <h1>{{title}}</h1>
+            <li *ngIf="isLoggedIn()" class="navbar-text text-success ml-5 mr-5 d-none d-lg-inline">
+              <i class="fas fa-lg fa-user"> Welcome, {{ user.displayName }}</i>
+            </li>
+
+            <div class="form-group">
+              <h1>{{survey.title}}</h1>
+
+              <div class="form-group">
+                <label for="TaskNameTextField">{{survey.question1}} </label>
+                <input type="text" class="form-control" id="txt_q1" placeholder="" name="question1"
+                  [(ngModel)]="survey.question1" value="" required />
+              </div>
+
+              <div class="form-group">
+                <label for="TaskNameTextField">{{survey.question2}}</label>
+                <input type="text" class="form-control" id="txt_q2" placeholder="" name="question2"
+                  [(ngModel)]="survey.question2" value="{{survey.question2}}" required />
+              </div>
+
+              <div class="form-group">
+                <label for="TaskNameTextField">{{survey.question3}}</label>
+                <input type="text" class="form-control" id="txt_q3" placeholder="" name="question3"
+                  [(ngModel)]="survey.question3" value="{{survey.question3}}" required />
+              </div>
+
+              <div class="form-group">
+                <label for="TaskNameTextField">{{survey.question4}}</label>
+                <input type="text" class="form-control" id="txt_q4" placeholder="" name="question4"
+                  [(ngModel)]="survey.question4" value="{{survey.question4}}" required />
+              </div>
+
+              <div class="form-group">
+                <label for="TaskNameTextField">{{survey.question5}}</label>
+                <input type="text" class="form-control" id="txt_q5" placeholder="" name="question5"
+                  [(ngModel)]="survey.question5" value="{{survey.question5}}" required />
+              </div>
+
+              <div>
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-edit"></i>Submit Answer
+                </button>
+                <a routerLink="/" class="btn btn-warning">
+                  <i class="fas fa-undo"></i> Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

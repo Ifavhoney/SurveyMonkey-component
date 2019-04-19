@@ -6,5 +6,4 @@ export class SurveyAnswer {
     answer_3: string;
     answer_4: string;
     answer_5: string;
-    status: string;
 }

@@ -11,6 +11,8 @@ import { CreateSurveyComponent } from "./pages/create-survey/create-survey.compo
 import { DisplaySurveyListComponent } from './pages/display-survey-list/display-survey-list.component';
 import { CreateSurveyDeleteComponent } from './pages/create-survey-delete/create-survey-delete.component';
 
+import { AnswerSurveyComponent } from './pages/answer-survey/answer-survey.component';
+
 const routes: Routes = [
   { path: "home", component: HomeComponent, data: { title: "Home" } },
   { path: "register", component: RegisterComponent, data: { title: "Register" } },
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: "survey/display-survey/add", component: CreateSurveyComponent, data: { title: "Create A Survey!" } },
   { path: "survey/display-survey/edit/:id", component: CreateSurveyComponent, data: { title: "Edit Survey" } },
   { path: "survey/display-survey/delete/:id", component: CreateSurveyDeleteComponent, data: { title: "Deleted Survey!" } },
+
+  { path: "survey/answer-survey/submit", component: AnswerSurveyComponent, data: { title: "Survey List" } },
 
   { path: "survey/survey-list", component: SurveyComponent, data: { title: "Survey-list" } },
   { path: "", redirectTo: "/home", pathMatch: "full" }
