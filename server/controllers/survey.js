@@ -48,7 +48,7 @@ module.exports.processSurvey = (req, res, next) => {
   });
 };
 
-module.exports.displayEditSurvey = (req, res, next) => {
+module.exports.displaySurveyQuestion = (req, res, next) => {
   let id = req.params.id;
 
   Survey.findById(id, (err, surveyObject) => {
@@ -57,37 +57,13 @@ module.exports.displayEditSurvey = (req, res, next) => {
       res.end(err);
     }
     else {
-      //show the edit page
-      res.json({ success: true, msg: 'Edit Page is Displaying', csurvey: surveyObject });
+      //show survey question
+      res.json({ success: true, msg: 'Survey Question is Displaying', survey: surveyObject });
     }
   });
 }
 
 
-module.exports.processEditSurvey = (req, res, next) => {
-  let id = req.params.id;
-
-  let updateSurvey = Survey({
-    _id: id,
-    title: req.body.title,
-    question1: req.body.question1,
-    question2: req.body.question2,
-    question3: req.body.question3,
-    question4: req.body.question4,
-    question5: req.body.question5
-  })
-
-  Survey.update({ _id: id }, updateSurvey, (err) => {
-    if (err) {
-      console.log(err);
-      res.end(err);
-    }
-    else {
-      //show the edit page
-      res.json({ success: true, msg: 'Successfully Updated Survey', survey: updateSurvey });
-    }
-  })
-}
 
 
 module.exports.processDeleteSurvey = (req, res, next) => {

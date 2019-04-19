@@ -62,6 +62,10 @@ export class SurveyService {
     return this.http.get<any>(this.endpoint + 'display-survey/edit/' + survey._id, this.httpOptions);
   }
 
+  public getSurveyQuestion(survey: Survey): Observable<any> {
+    return this.http.get<any>(this.endpoint + "answer-survey/submit/" + survey._id, this.httpOptions);
+  }
+
   public editSurvey(survey: Survey): Observable<any> {
     return this.http.post<any>(this.endpoint + 'display-survey/edit/' + survey._id, survey, this.httpOptions);
   }

@@ -21,10 +21,9 @@ const routes: Routes = [
 
   { path: "survey/display-survey", component: DisplaySurveyListComponent, data: { title: "Survey List" } },
   { path: "survey/display-survey/add", component: CreateSurveyComponent, data: { title: "Create A Survey!" } },
-  { path: "survey/display-survey/edit/:id", component: CreateSurveyComponent, data: { title: "Edit Survey" } },
   { path: "survey/display-survey/delete/:id", component: CreateSurveyDeleteComponent, data: { title: "Deleted Survey!" } },
 
-  { path: "survey/answer-survey/submit", component: AnswerSurveyComponent, data: { title: "Survey List" } },
+  { path: "survey/answer-survey/submit/:id", component: AnswerSurveyComponent, data: { title: "Submit Answer" } },
 
   { path: "survey/survey-list", component: SurveyComponent, data: { title: "Survey-list" } },
   { path: "", redirectTo: "/home", pathMatch: "full" }
