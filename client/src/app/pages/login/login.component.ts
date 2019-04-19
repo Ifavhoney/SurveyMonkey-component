@@ -24,8 +24,10 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSubmit(): void {
+    //authenticateUser creates a token
     this.authService.authenticateUser(this.user).subscribe(data => {
       if (data.success) {
+        //Shared across our website - require a token + user
         this.authService.storeUserData(data.token, data.user);
         this.flashMessage.show(data.msg, { cssClass: 'alert-success', timeOut: 3000 });
         this.router.navigate(['/']);

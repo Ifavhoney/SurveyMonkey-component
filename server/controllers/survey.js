@@ -5,22 +5,24 @@ var session = require('express-session');
 let DB = require("../config/db");
 
 let surveyModel = require("../models/survey");
-let books = require("./index")
+let surveyAnswerModel = require("../models/surveyAnswer")
 //get exported model
 let Survey = surveyModel.survey;
-
+let Answer = surveyAnswerModel.survey
+//Show all Surveys
 module.exports.displaySurvey = (req, res, next) => {
 
   Survey.find((err, surveyList) => {
     if (err) {
       return console.error(err);
     } else {
-      res.json({ success: true, msg: 'Contact List Displayed', surveyList: surveyList, user: req.user });
+      res.json({ success: true, msg: 'SurveyList List Displayed', surveyList: surveyList, user: req.user });
 
     }
   });
 };
 
+//Add Surveys
 module.exports.processSurvey = (req, res, next) => {
 
   //username bodied on Angular side
@@ -48,6 +50,7 @@ module.exports.processSurvey = (req, res, next) => {
   });
 };
 
+//Show survey questions
 module.exports.displaySurveyQuestion = (req, res, next) => {
   let id = req.params.id;
 
@@ -63,9 +66,55 @@ module.exports.displaySurveyQuestion = (req, res, next) => {
   });
 }
 
+//answer survey questions
+module.exports.answerSurveyQuestions = (req, res, next) => {
+  //get params ID
+  let surveyID = req.params.id;
+  let answerFields = Answer({
+  surveyID: surveyID,
+  surveyTitle: req.body.surveyTitle,
+  postedByuser: req.body.postedByuser,
+  submitedByuser: req.body.submitedByuser,
+  time: req.body.time,
+  answer1: req.body.answer1,
+  answer2: req.body.answer2,
+  answer3: req.body.answer3,
+  answer4: req.body.answer4,
+  answer5: req.body.answer5
+  });
+
+  //Add body
+  Answer.create(answerFields, (err, val ) => {
+    if (err){
+      console.log(err)
+    }
+    else{
+      res.json({
+        success: true,
+        msg: "Successfully added Survey"
+      });    }
+  });
+
+}
+
+//View answers
+module.exports.displaySurveyAnswers = (req, res, next) => {
+  let surveyID = req.params.id;
+
+  Answer.find({surveyID: surveyID}, (err, data) => {
+    if (err){
+      console.log(err);
+    }
+    else{
+      res.json({ success: true, msg: 'Answers are Displaying', answer: data });
+
+    }
+  })
 
 
+}
 
+//Delete Survey 
 module.exports.processDeleteSurvey = (req, res, next) => {
   let id = req.params.id;
 

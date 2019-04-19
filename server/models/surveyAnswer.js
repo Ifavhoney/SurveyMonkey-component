@@ -2,9 +2,27 @@ let mongoose = require("mongoose");
 
 let surveySchema = mongoose.Schema(
     {
-        title: {
+        surveyID: {
             type: String
         },
+
+        surveyTitle: {
+            type: String
+        },
+
+
+        postedByuser: {
+            type: String
+        }, 
+        
+        submitedByuser:{
+            type: String
+        },
+
+        time: {
+            type: String
+        },
+      
         answer1: {
             type: String
         },

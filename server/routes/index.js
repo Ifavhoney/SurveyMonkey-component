@@ -19,6 +19,12 @@ router.get("/survey/display-survey", surveyController.displaySurvey);
 router.post("/survey/display-survey/add", surveyController.processSurvey);
 
 router.get("/survey/answer-survey/submit/:id", surveyController.displaySurveyQuestion);
+router.post("/survey/answer-survey/submit/:id", surveyController.answerSurveyQuestions);
+//TO DO - DISPLAY ANSWERS
+
+router.get("/survey/answer-survey/view/:id", surveyController.displaySurveyAnswers);
+
+
 
 // router.post("/survey/display-survey/edit/:id", surveyController.processEditSurvey);
 

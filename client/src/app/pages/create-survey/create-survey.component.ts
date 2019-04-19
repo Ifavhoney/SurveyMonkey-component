@@ -60,7 +60,7 @@ export class CreateSurveyComponent implements OnInit {
           }
         });
         break;
-      case "Edit Survey":
+      case "Edit Survey":   
         this.service.editSurvey(this.survey).subscribe(data => {
           if (data.success) {
             this.flashMessage.show(data.msg, { cssClass: 'alert-success', timeOut: 3000 });
@@ -83,9 +83,8 @@ export class CreateSurveyComponent implements OnInit {
   isLoggedIn(): boolean {
     const result = this.authService.loggedIn();
     if (result) {
+      //local storage item where our stringified user exists
       this.user = JSON.parse(localStorage.getItem('user'));
-
-
     }
     return result;
   }

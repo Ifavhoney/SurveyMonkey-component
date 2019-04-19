@@ -2,11 +2,12 @@ import { Injectable } from "@angular/core";
 //PUSH IT STOP BEING WASTE, P U S H IT OR SUFFERRRR,
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { formatDate } from "@angular/common";
 
 //importing model (client)
 import { Survey } from "../models/survey";
 import { User } from "../models/user";
-
+import  {SurveyAnswer } from "../models/survey-answer"
 @Injectable({
   providedIn: "root"
 })
@@ -15,7 +16,9 @@ import { User } from "../models/user";
 export class SurveyService {
   private user: User;
   private authToken: any = null;
-
+  jstoday = "";
+  today = new Date();
+  
   //connect to API
   private endpoint = "http://localhost:3000/api/survey/";
   //Form of communication
@@ -31,6 +34,7 @@ export class SurveyService {
   constructor(private http: HttpClient) {
     //instantiate
     this.user = new User();
+    this.jstoday = formatDate(this.today,"dd-MM-yyyy hh:mm:ss a", "en-US", "+04:00")
   }
 
   // public displayTypeSurveys(): Observable<any> {
@@ -66,8 +70,25 @@ export class SurveyService {
     return this.http.get<any>(this.endpoint + "answer-survey/submit/" + survey._id, this.httpOptions);
   }
 
+  public getSurveyAnswers(survey: Survey): Observable<any> {
+    return this.http.get<any>(this.endpoint + "answer-survey/view/" + survey._id, this.httpOptions);
+  }
+
   public editSurvey(survey: Survey): Observable<any> {
     return this.http.post<any>(this.endpoint + 'display-survey/edit/' + survey._id, survey, this.httpOptions);
+  }
+
+
+  
+  public answerQuestions(survey: Survey, answer: SurveyAnswer, user: User): Observable<any> {
+    //SET Variables
+    answer.postedByuser = survey.username;
+    answer.submitedByuser = user.username;
+    answer.surveyTitle = survey.title;
+    answer.surveyID = survey._id;
+    answer.time = this.jstoday
+
+    return this.http.post<any>(this.endpoint + "answer-survey/submit/" + survey._id, answer, this.httpOptions)
   }
 
   public deleteSurvey(survey: Survey): Observable<any> {
