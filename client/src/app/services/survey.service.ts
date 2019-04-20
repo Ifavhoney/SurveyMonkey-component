@@ -20,7 +20,9 @@ export class SurveyService {
   today = new Date();
 
   //connect to API
-  private endpoint = "http://localhost:3000/api/survey/";
+  //private endpoint = "http://localhost:3000/api/survey/";
+  private endpoint = "https://comp308-orrincruz-assgn02.herokuapp.com/api/survey/";
+
   //Form of communication
   private httpOptions = {
     headers: new HttpHeaders({

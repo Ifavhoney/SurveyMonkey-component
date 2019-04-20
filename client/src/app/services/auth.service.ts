@@ -11,8 +11,8 @@ export class AuthService {
   user: User;
   private authToken: any;
 
-  //  private endpoint = 'https://comp308-w2019-group-project.herokuapp.com/api/';
-  private endpoint = "http://localhost:3000/api/";
+  private endpoint = 'https://comp308-orrincruz-assgn02.herokuapp.com/api/';
+  //private endpoint = "http://localhost:3000/api/";
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -40,10 +40,10 @@ export class AuthService {
   }
 
   public storeUserData(token: any, user: User): void {
-   //store token & user as a string - sharedPreference
+    //store token & user as a string - sharedPreference
     localStorage.setItem("id_token", "Bearer " + token);
     localStorage.setItem("user", JSON.stringify(user));
-   
+
     //set variables
     this.authToken = token;
     this.user = user;
