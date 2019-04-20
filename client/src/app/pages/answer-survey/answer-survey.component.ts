@@ -50,7 +50,7 @@ export class AnswerSurveyComponent implements OnInit {
   private getSurveyQuestion(): void {
     this.service.getSurveyQuestion(this.survey).subscribe(data => {
       this.survey = data.survey;
-      console.log(this.survey._id);
+      console.log(this.surveyAnswer.surveyID);
     });
   }
 

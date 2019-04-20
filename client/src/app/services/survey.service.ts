@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { formatDate } from "@angular/common";
+import { map } from 'rxjs/operators';
 
 //importing model (client)
 import { Survey } from "../models/survey";
@@ -86,11 +87,11 @@ export class SurveyService {
 
   public getSurveyAnswers(surveyAnswer: SurveyAnswer): Observable<any> {
     // console.log(surveyAnswer.surveyID);
-
+    
     return this.http.get<any>(
       this.endpoint + "answer-survey/view/" + surveyAnswer.surveyID,
       this.httpOptions
-    );
+    )
   }
 
   public editSurvey(survey: Survey): Observable<any> {

@@ -18,9 +18,12 @@ export class DisplayAnswersComponent implements OnInit {
   //Global Variables
 
   title: string;
-  survey: Survey;
+  surveyQuestion: Survey;
   user: User;
   surveyAnswer: SurveyAnswer;
+  answer: Array<SurveyAnswer>;
+  survey: Array<Survey>;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,25 +35,45 @@ export class DisplayAnswersComponent implements OnInit {
 
   ngOnInit() {
     this.surveyAnswer = new SurveyAnswer();
+    this.surveyQuestion = new Survey();
+    this.answer = new Array<SurveyAnswer>();
+    this.survey = new Array<Survey>();
+
+ //   this.surveyAnswer2 = new SurveyAnswer();
+
+
 
     //Set ActivatedRoutes
     this.title = this.activatedRoute.snapshot.data.title;
 
-    this.activatedRoute.params.subscribe(params => {
-      //set set surveyID for service
-      this.surveyAnswer.surveyID = params.id;
-    });
 
+    this.activatedRoute.params.subscribe(params => {
+      this.surveyAnswer.surveyID = params.id;
+      this.surveyQuestion._id = this.surveyAnswer.surveyID;
+    
+
+    });
     if (this.title === "Results") {
       this.getAnswerQuestions();
+      this.getSurveyQuestions()
     }
   }
 
   public getAnswerQuestions(): void {
+
     this.service.getSurveyAnswers(this.surveyAnswer).subscribe(data => {
-      this.surveyAnswer = data.answer;
-      console.log(this.surveyAnswer);
+      //data = data.answer;
+      this.answer = data.answer
+
+
     });
+  }
+
+  public getSurveyQuestions(): void {
+    console.log(this.surveyQuestion._id);
+    this.service.getSurveyQuestion(this.surveyQuestion).subscribe(data => {
+      this.survey = data.survey;
+    })
   }
 
   //Return true for user is loggedIn
