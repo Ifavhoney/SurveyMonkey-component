@@ -36,6 +36,7 @@ import { AnswerSurveyComponent } from "./pages/answer-survey/answer-survey.compo
 import { CreateSurveyDeactivateComponent } from "./pages/create-survey-deactivate/create-survey-deactivate.component";
 import { TruehomepageComponent } from "./pages/truehomepage/truehomepage.component";
 import { GuestSurveyListComponent } from "./pages/guest-survey-list/guest-survey-list.component";
+import { DisplayAnswersComponent } from './pages/display-answers/display-answers.component';
 
 export function jwtTokenGetter() {
   return localStorage.getItem("id_token");
@@ -57,7 +58,8 @@ export function jwtTokenGetter() {
     AnswerSurveyComponent,
     CreateSurveyDeactivateComponent,
     TruehomepageComponent,
-    GuestSurveyListComponent
+    GuestSurveyListComponent,
+    DisplayAnswersComponent
   ],
   imports: [
     BrowserModule,
@@ -75,4 +77,4 @@ export function jwtTokenGetter() {
   providers: [FlashMessagesService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

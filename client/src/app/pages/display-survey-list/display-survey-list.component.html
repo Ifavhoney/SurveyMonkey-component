@@ -5,7 +5,7 @@
         <h1>Survey List</h1>
         <a routerLink="/survey/display-survey/add" class="btn btn-primary " role="button" aria-pressed="true">
           <i class="fas fa-user-plus"></i>Add a Survey</a>
-        <br>
+        <br />
         <table class="table table-bordered table-striped table-hover">
           <!-- Header Row-->
 
@@ -19,13 +19,18 @@
 
           <!-- Repeatable Template Row -->
           <tr *ngFor="let survey of surveys">
-            <td class="text-center">{{ survey.title}}</td>
-            <td class="text-center">{{ survey.username}}</td>
+            <td class="text-center">{{ survey.title }}</td>
+            <td class="text-center">{{ survey.username }}</td>
             <td class="text-center">{{ survey.status }}</td>
 
             <td class="text-center" *ngIf="isActive()">
               <a routerLink="/survey/display-survey/deactivate/{{ survey._id }}" class="btn btn-primary"
                 (click)="onDeactivateClick()"><i class="fas fa-pencil-alt"></i> Deactivate</a>
+            </td>
+
+            <td class="text-center">
+              <a routerLink="/survey/answer-list/{{ survey._id }}" class="btn btn-primary"><i
+                  class="fas fa-pencil-alt"></i> View Answers</a>
             </td>
 
             <td class="text-center">

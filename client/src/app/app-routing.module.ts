@@ -12,6 +12,7 @@ import { CreateSurveyComponent } from "./pages/create-survey/create-survey.compo
 import { DisplaySurveyListComponent } from "./pages/display-survey-list/display-survey-list.component";
 import { CreateSurveyDeleteComponent } from "./pages/create-survey-delete/create-survey-delete.component";
 import { AnswerSurveyComponent } from "./pages/answer-survey/answer-survey.component";
+import { DisplayAnswersComponent } from "./pages/display-answers/display-answers.component";
 import { CreateSurveyDeactivateComponent } from "./pages/create-survey-deactivate/create-survey-deactivate.component";
 import { GuestSurveyListComponent } from "./pages/guest-survey-list/guest-survey-list.component";
 
@@ -19,12 +20,7 @@ import { GuestSurveyListComponent } from "./pages/guest-survey-list/guest-survey
 import { AuthGuard } from "./guards/auth.guard";
 
 const routes: Routes = [
-  { path: "home", component: TruehomepageComponent, data: { title: "Home" } },
-  {
-    path: "display",
-    component: HomeComponent,
-    data: { title: "Display Survey" }
-  },
+  { path: "home", component: HomeComponent, data: { title: "Home" } },
   {
     path: "register",
     component: RegisterComponent,
@@ -74,11 +70,16 @@ const routes: Routes = [
     component: GuestSurveyListComponent,
     data: { title: "Guest Survey List" }
   },
-  { path: "", redirectTo: "/home", pathMatch: "full" }
+  {
+    path: "survey/answer-list/:id",
+    component: DisplayAnswersComponent,
+    data: { title: "Results" }
+  },
+  { path: "", redirectTo: "/home", pathMatch: "full" },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

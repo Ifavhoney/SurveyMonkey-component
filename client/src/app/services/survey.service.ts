@@ -3,11 +3,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { formatDate } from "@angular/common";
+import { map } from 'rxjs/operators';
 
 //importing model (client)
 import { Survey } from "../models/survey";
 import { User } from "../models/user";
-import { SurveyAnswer } from "../models/survey-answer"
+import { SurveyAnswer } from "../models/survey-answer";
 @Injectable({
   providedIn: "root"
 })
@@ -36,7 +37,7 @@ export class SurveyService {
   constructor(private http: HttpClient) {
     //instantiate
     this.user = new User();
-    this.jstoday = formatDate(this.today, "dd-MM-yyyy hh:mm:ss a", "en-US", "+04:00")
+    this.jstoday = formatDate(this.today, "dd-MM-yyyy hh:mm:ss a", "en-US", "+04:00");
   }
 
   // public displayTypeSurveys(): Observable<any> {
@@ -49,7 +50,10 @@ export class SurveyService {
 
   public getList(): Observable<any> {
     //this.loadToken();
-    return this.http.get<any>(this.endpoint + "display-survey", this.httpOptions);
+    return this.http.get<any>(
+      this.endpoint + "display-survey",
+      this.httpOptions
+    );
   }
 
   public addSurvey(survey: Survey, user: User): Observable<any> {
@@ -65,19 +69,34 @@ export class SurveyService {
   }
 
   public getSurvey(survey: Survey): Observable<any> {
-    return this.http.get<any>(this.endpoint + 'display-survey/edit/' + survey._id, this.httpOptions);
+    return this.http.get<any>(
+      this.endpoint + "display-survey/edit/" + survey._id,
+      this.httpOptions
+    );
   }
 
   public getSurveyQuestion(survey: Survey): Observable<any> {
-    return this.http.get<any>(this.endpoint + "answer-survey/submit/" + survey._id, this.httpOptions);
+    return this.http.get<any>(
+      this.endpoint + "answer-survey/submit/" + survey._id,
+      this.httpOptions
+    );
   }
 
-  public getSurveyAnswers(survey: Survey): Observable<any> {
-    return this.http.get<any>(this.endpoint + "answer-survey/view/" + survey._id, this.httpOptions);
+  public getSurveyAnswers(surveyAnswer: SurveyAnswer): Observable<any> {
+    // console.log(surveyAnswer.surveyID);
+
+    return this.http.get<any>(
+      this.endpoint + "answer-survey/view/" + surveyAnswer.surveyID,
+      this.httpOptions
+    )
   }
 
   public editSurvey(survey: Survey): Observable<any> {
-    return this.http.post<any>(this.endpoint + 'display-survey/edit/' + survey._id, survey, this.httpOptions);
+    return this.http.post<any>(
+      this.endpoint + "display-survey/edit/" + survey._id,
+      survey,
+      this.httpOptions
+    );
   }
 
 
@@ -85,24 +104,36 @@ export class SurveyService {
 
 
   public answerQuestions(survey: Survey, answer: SurveyAnswer, user: User): Observable<any> {
+    // public answerQuestions(
+    //   survey: Survey,
+    //   answer: SurveyAnswer,
+    //   user: User
+    // ): Observable<any> {
     //SET Variables
     answer.postedByuser = survey.username;
     answer.submitedByuser = user.username;
     answer.surveyTitle = survey.title;
     answer.surveyID = survey._id;
-    answer.time = this.jstoday
+    answer.time = this.jstoday;
 
-    return this.http.post<any>(this.endpoint + "answer-survey/submit/" + survey._id, answer, this.httpOptions)
+    return this.http.post<any>(
+      this.endpoint + "answer-survey/submit/" + survey._id,
+      answer,
+      this.httpOptions
+    );
   }
 
   public updateSurveyStatus(survey: Survey): Observable<any> {
     return this.http.post<any>(this.endpoint + "display-survey/deactivate/" + survey._id, this.httpOptions);
   }
+  //TO DO GET PARAMS
 
   public deleteSurvey(survey: Survey): Observable<any> {
-    return this.http.get<any>(this.endpoint + "display-survey/delete/" + survey._id, this.httpOptions);
+    return this.http.get<any>(
+      this.endpoint + "display-survey/delete/" + survey._id,
+      this.httpOptions
+    );
   }
-
 
   private loadToken() {
     const token = localStorage.getItem("id_token");
