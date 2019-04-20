@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 //import model
 import { Survey } from "../../models/survey";
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-display-survey-list',
@@ -14,6 +15,7 @@ import { Survey } from "../../models/survey";
 export class DisplaySurveyListComponent implements OnInit {
   surveys: Survey[];
   survey: Survey;
+  user: User;
 
   constructor(
     private surveyListService: SurveyService,
@@ -24,6 +26,7 @@ export class DisplaySurveyListComponent implements OnInit {
   ngOnInit() {
     this.surveys = new Array<Survey>();
     this.survey = new Survey();
+    this.user = new User();
     this.displaySurveyList();
   }
 
