@@ -13,6 +13,7 @@ import { Survey } from "../../models/survey";
 })
 export class DisplaySurveyListComponent implements OnInit {
   surveys: Survey[];
+  survey: Survey;
 
   constructor(
     private surveyListService: SurveyService,
@@ -22,11 +23,18 @@ export class DisplaySurveyListComponent implements OnInit {
 
   ngOnInit() {
     this.surveys = new Array<Survey>();
+    this.survey = new Survey();
     this.displaySurveyList();
   }
 
   private onDeleteClick(): void {
     if (!confirm('Are Your Sure?')) {
+      this.router.navigate(['/survey/display-survey']);
+    }
+  }
+
+  private onDeactivateClick(): void {
+    if (!confirm('Deacivate Survey?')) {
       this.router.navigate(['/survey/display-survey']);
     }
   }
@@ -41,4 +49,16 @@ export class DisplaySurveyListComponent implements OnInit {
       }
     });
   }
+
+  isActive(): boolean {
+    let result = false;
+    if (this.survey.status == 'active') {
+      result = true;
+    }
+    else {
+      result = false;
+    }
+    return result;
+  }
+
 }

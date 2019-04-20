@@ -71,28 +71,29 @@ module.exports.answerSurveyQuestions = (req, res, next) => {
   //get params ID
   let surveyID = req.params.id;
   let answerFields = Answer({
-  surveyID: surveyID,
-  surveyTitle: req.body.surveyTitle,
-  postedByuser: req.body.postedByuser,
-  submitedByuser: req.body.submitedByuser,
-  time: req.body.time,
-  answer1: req.body.answer1,
-  answer2: req.body.answer2,
-  answer3: req.body.answer3,
-  answer4: req.body.answer4,
-  answer5: req.body.answer5
+    surveyID: surveyID,
+    surveyTitle: req.body.surveyTitle,
+    postedByuser: req.body.postedByuser,
+    submitedByuser: req.body.submitedByuser,
+    time: req.body.time,
+    answer1: req.body.answer1,
+    answer2: req.body.answer2,
+    answer3: req.body.answer3,
+    answer4: req.body.answer4,
+    answer5: req.body.answer5
   });
 
   //Add body
-  Answer.create(answerFields, (err, val ) => {
-    if (err){
+  Answer.create(answerFields, (err, val) => {
+    if (err) {
       console.log(err)
     }
-    else{
+    else {
       res.json({
         success: true,
         msg: "Successfully added Survey"
-      });    }
+      });
+    }
   });
 
 }
@@ -101,15 +102,38 @@ module.exports.answerSurveyQuestions = (req, res, next) => {
 module.exports.displaySurveyAnswers = (req, res, next) => {
   let surveyID = req.params.id;
 
-  Answer.find({surveyID: surveyID}, (err, data) => {
-    if (err){
+  Answer.find({ surveyID: surveyID }, (err, data) => {
+    if (err) {
       console.log(err);
     }
-    else{
+    else {
       res.json({ success: true, msg: 'Answers are Displaying', answer: data });
 
     }
   })
+
+
+}
+
+module.exports.processDeactivateSurvey = (req, res, next) => {
+  let id = req.params.id;
+
+  let updatedStatus = Survey({
+    "_id": id,
+    "status": "inactive"
+
+  })
+
+  Survey.update({ _id: id }, updatedStatus, (err) => {
+    if (err) {
+      console.log(err);
+      res.end(err);
+    }
+    else {
+      //show the edit page
+      res.json({ success: true, msg: 'Deactivated Survey', survey: Survey });
+    }
+  });
 
 
 }

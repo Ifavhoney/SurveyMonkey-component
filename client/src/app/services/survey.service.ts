@@ -7,7 +7,7 @@ import { formatDate } from "@angular/common";
 //importing model (client)
 import { Survey } from "../models/survey";
 import { User } from "../models/user";
-import  {SurveyAnswer } from "../models/survey-answer"
+import { SurveyAnswer } from "../models/survey-answer"
 @Injectable({
   providedIn: "root"
 })
@@ -18,7 +18,7 @@ export class SurveyService {
   private authToken: any = null;
   jstoday = "";
   today = new Date();
-  
+
   //connect to API
   private endpoint = "http://localhost:3000/api/survey/";
   //Form of communication
@@ -34,7 +34,7 @@ export class SurveyService {
   constructor(private http: HttpClient) {
     //instantiate
     this.user = new User();
-    this.jstoday = formatDate(this.today,"dd-MM-yyyy hh:mm:ss a", "en-US", "+04:00")
+    this.jstoday = formatDate(this.today, "dd-MM-yyyy hh:mm:ss a", "en-US", "+04:00")
   }
 
   // public displayTypeSurveys(): Observable<any> {
@@ -79,7 +79,9 @@ export class SurveyService {
   }
 
 
-  
+
+
+
   public answerQuestions(survey: Survey, answer: SurveyAnswer, user: User): Observable<any> {
     //SET Variables
     answer.postedByuser = survey.username;
@@ -89,6 +91,10 @@ export class SurveyService {
     answer.time = this.jstoday
 
     return this.http.post<any>(this.endpoint + "answer-survey/submit/" + survey._id, answer, this.httpOptions)
+  }
+
+  public updateSurveyStatus(survey: Survey): Observable<any> {
+    return this.http.post<any>(this.endpoint + "display-survey/deactivate/" + survey._id, this.httpOptions);
   }
 
   public deleteSurvey(survey: Survey): Observable<any> {
