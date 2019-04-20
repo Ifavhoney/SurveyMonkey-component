@@ -20,7 +20,7 @@ import { GuestSurveyListComponent } from "./pages/guest-survey-list/guest-survey
 import { AuthGuard } from "./guards/auth.guard";
 
 const routes: Routes = [
-  { path: "home", component: HomeComponent, data: { title: "Home" } },
+  { path: "home", component: TruehomepageComponent, data: { title: "Home" } },
   {
     path: "register",
     component: RegisterComponent,
