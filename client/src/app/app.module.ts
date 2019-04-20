@@ -11,6 +11,10 @@ import { FooterComponent } from "./partials/footer/footer.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
 
+// Route Guards
+ import { AuthGuard } from './guards/auth.guard';
+
+
 // Services
 import {
   FlashMessagesModule,
@@ -31,6 +35,7 @@ import { DisplaySurveyListComponent } from './pages/display-survey-list/display-
 import { CreateSurveyDeleteComponent } from './pages/create-survey-delete/create-survey-delete.component';
 import { AnswerSurveyComponent } from './pages/answer-survey/answer-survey.component';
 import { CreateSurveyDeactivateComponent } from './pages/create-survey-deactivate/create-survey-deactivate.component';
+import { GuestSurveyListComponent } from './pages/guest-survey-list/guest-survey-list.component';
 
 export function jwtTokenGetter() {
   return localStorage.getItem("id_token");
@@ -50,7 +55,8 @@ export function jwtTokenGetter() {
     DisplaySurveyListComponent,
     CreateSurveyDeleteComponent,
     AnswerSurveyComponent,
-    CreateSurveyDeactivateComponent
+    CreateSurveyDeactivateComponent,
+    GuestSurveyListComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +71,7 @@ export function jwtTokenGetter() {
       }
     })
   ],
-  providers: [FlashMessagesService],
+  providers: [FlashMessagesService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
