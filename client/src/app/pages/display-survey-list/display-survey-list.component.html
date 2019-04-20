@@ -3,9 +3,15 @@
     <div class="row">
       <div class="col-mid-offset-3 col-md-9">
         <h1>Survey List</h1>
-        <a routerLink="/survey/display-survey/add" class="btn btn-primary " role="button" aria-pressed="true">
-          <i class="fas fa-user-plus"></i>Add a Survey</a>
-        <br>
+        <a
+          routerLink="/survey/display-survey/add"
+          class="btn btn-primary "
+          role="button"
+          aria-pressed="true"
+        >
+          <i class="fas fa-user-plus"></i>Add a Survey</a
+        >
+        <br />
         <table class="table table-bordered table-striped table-hover">
           <!-- Header Row-->
 
@@ -19,18 +25,25 @@
 
           <!-- Repeatable Template Row -->
           <tr *ngFor="let survey of surveys">
-            <td class="text-center">{{ survey.title}}</td>
-            <td class="text-center">{{ survey.username}}</td>
+            <td class="text-center">{{ survey.title }}</td>
+            <td class="text-center">{{ survey.username }}</td>
             <td class="text-center">{{ survey.status }}</td>
 
             <td class="text-center">
-              <a routerLink="/survey/answer-survey/submit/{{ survey._id }}" class="btn btn-primary"><i
-                  class="fas fa-pencil-alt"></i> Edit</a>
+              <a
+                routerLink="/survey/answer-list/{{ survey._id }}"
+                class="btn btn-primary"
+                ><i class="fas fa-pencil-alt"></i> View Answers</a
+              >
             </td>
 
             <td class="text-center">
-              <a routerLink="/survey/display-survey/delete/{{ survey._id }}" (click)="onDeleteClick()"
-                class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+              <a
+                routerLink="/survey/display-survey/delete/{{ survey._id }}"
+                (click)="onDeleteClick()"
+                class="btn btn-danger"
+                ><i class="fas fa-trash-alt"></i> Delete</a
+              >
             </td>
           </tr>
         </table>
