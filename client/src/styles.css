@@ -1,57 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
-/*
-    Student Name: Harvey Cabrias
-    Student ID: 300906772
-    Date: 2/16/2019
-*/
+.body {
+  background-image: url("https://wallpapers-house.com/data/out/10/wallpaper2you_444301.jpg");
+  background-position: center;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .img-service {
-  width:110px;
-  height:110px;
-  float:left;
-  margin-right:10px;padding:2px
+  width: 110px;
+  height: 110px;
+  float: left;
+  margin-right: 10px;
+  padding: 2px;
 }
 
-.img-center{
+.img-center {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-.logo{
+.logo {
   width: 50px;
   height: 50px;
 }
-.profile{
-  max-width:25%;
-  max-height:25%;
+.profile {
+  max-width: 25%;
+  max-height: 25%;
 
-  float:left;
-  margin-right:10px;
-  padding:2px
+  float: left;
+  margin-right: 10px;
+  padding: 2px;
 }
 
-.project{
-  max-width:20%;
-  max-height:25%;
+.project {
+  max-width: 20%;
+  max-height: 25%;
   object-fit: contain;
   float: left;
-  margin-right:10px;
-  padding:2px
+  margin-right: 10px;
+  padding: 2px;
 }
-.munchies{
-  max-width:13%;
-  max-height:13%;
+.munchies {
+  max-width: 13%;
+  max-height: 13%;
   object-fit: contain;
   float: left;
-  margin-right:10px;
-  padding:2px
+  margin-right: 10px;
+  padding: 2px;
 }
 
-.textCenter{
+.textCenter {
   text-align: center;
 }
 
-.contact{
+.contact {
   padding: 4%;
   height: 400px;
 }
@@ -60,13 +62,12 @@ ul {
   list-style-type: square;
 }
 
-
 /* Contact CSS */
-.contact{
+.contact {
   padding: 4%;
 }
-.col-md-3{
-  background: #C98F3E;
+.col-md-3 {
+  background: #c98f3e;
   padding: 4%;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
@@ -78,12 +79,12 @@ ul {
   background: lightgrey;
   padding: 1rem 1rem 1rem 1rem;
   border-radius: 0.5rem;
-  box-shadow: 7px 7px 30px -5px rgba(0,0,0,0.1);
+  box-shadow: 7px 7px 30px -5px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
 }
 
 .wrap:hover {
-  background: linear-gradient(135deg,#A2CE8F 0%,#77A165 100%);
+  background: linear-gradient(135deg, #a2ce8f 0%, #77a165 100%);
   color: white;
 }
 
@@ -109,7 +110,7 @@ h2 {
   margin-bottom: 0.5rem;
 }
 .display-5 {
-  font-family: 'Source Sans Pro',sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 1.4rem;
 }
 .mbr-bold {
@@ -122,6 +123,56 @@ p {
   line-height: 25px;
 }
 .display-6 {
-  font-family: 'Source Sans Pro',sans-serif;
-  font-size: 1re
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1re;
+}
+.jumbotrons {
+  background-color: #b3dbff;
+}
+/*pushes image on home to the right for asthetics*/
+.right {
+  margin-left: auto;
+  margin-right: auto;
+  float: right;
+}
+
+/*Table design in service page*/
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 2px solid #141313;
+  text-align: center;
+  padding: 10px;
+}
+tr:nth-child(odd) {
+  background-color: #7b888d;
+}
+tr:nth-child(even) {
+  background-color: #dbe1e3;
+}
+.container {
+  position: relative;
+  min-height: 100vh;
+}
+#content-wrap {
+  padding-bottom: 2.5rem; /* Footer height */
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 35px;
+  width: 100%;
+  background-color: #312f2ffb;
+  color: rgb(202, 197, 197);
+  text-align: left;
+}
+
+.jumbotron {
+  background: rgba(197, 218, 236, 0.952);
 }
