@@ -11,6 +11,9 @@ import { FooterComponent } from "./partials/footer/footer.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
 
+// Route Guards
+import { AuthGuard } from "./guards/auth.guard";
+
 // Services
 import {
   FlashMessagesModule,
@@ -27,11 +30,12 @@ import { BasePageComponent } from "./partials/base-page/base-page.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { SurveyComponent } from "./pages/survey/survey.component";
 import { CreateSurveyComponent } from "./pages/create-survey/create-survey.component";
-import { DisplaySurveyListComponent } from './pages/display-survey-list/display-survey-list.component';
-import { CreateSurveyDeleteComponent } from './pages/create-survey-delete/create-survey-delete.component';
-import { AnswerSurveyComponent } from './pages/answer-survey/answer-survey.component';
-import { CreateSurveyDeactivateComponent } from './pages/create-survey-deactivate/create-survey-deactivate.component';
-import { TruehomepageComponent } from './pages/truehomepage/truehomepage.component';
+import { DisplaySurveyListComponent } from "./pages/display-survey-list/display-survey-list.component";
+import { CreateSurveyDeleteComponent } from "./pages/create-survey-delete/create-survey-delete.component";
+import { AnswerSurveyComponent } from "./pages/answer-survey/answer-survey.component";
+import { CreateSurveyDeactivateComponent } from "./pages/create-survey-deactivate/create-survey-deactivate.component";
+import { TruehomepageComponent } from "./pages/truehomepage/truehomepage.component";
+import { GuestSurveyListComponent } from "./pages/guest-survey-list/guest-survey-list.component";
 
 export function jwtTokenGetter() {
   return localStorage.getItem("id_token");
@@ -52,7 +56,8 @@ export function jwtTokenGetter() {
     CreateSurveyDeleteComponent,
     AnswerSurveyComponent,
     CreateSurveyDeactivateComponent,
-    TruehomepageComponent
+    TruehomepageComponent,
+    GuestSurveyListComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +72,7 @@ export function jwtTokenGetter() {
       }
     })
   ],
-  providers: [FlashMessagesService],
+  providers: [FlashMessagesService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

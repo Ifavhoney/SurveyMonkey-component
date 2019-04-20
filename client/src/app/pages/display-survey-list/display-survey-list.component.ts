@@ -51,14 +51,14 @@ export class DisplaySurveyListComponent implements OnInit {
   }
 
   isActive(): boolean {
-    let result = false;
+    let result = true;
     if (this.survey.status == 'active') {
       result = true;
     }
     else {
       result = false;
     }
-    return result;
+    return true;
   }
 
 }
