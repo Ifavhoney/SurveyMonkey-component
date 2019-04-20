@@ -21,7 +21,7 @@ export class SurveyService {
 
   //connect to API
   //private endpoint = "http://localhost:3000/api/survey/";
-  private endpoint = "https://comp308-orrincruz-assgn02.herokuapp.com/api/survey/";
+  private endpoint = "https://group16-survey.herokuapp.com/api/survey/";
 
   //Form of communication
   private httpOptions = {
