@@ -31,6 +31,7 @@ import { DisplaySurveyListComponent } from './pages/display-survey-list/display-
 import { CreateSurveyDeleteComponent } from './pages/create-survey-delete/create-survey-delete.component';
 import { AnswerSurveyComponent } from './pages/answer-survey/answer-survey.component';
 import { CreateSurveyDeactivateComponent } from './pages/create-survey-deactivate/create-survey-deactivate.component';
+import { TruehomepageComponent } from './pages/truehomepage/truehomepage.component';
 
 export function jwtTokenGetter() {
   return localStorage.getItem("id_token");
@@ -50,7 +51,8 @@ export function jwtTokenGetter() {
     DisplaySurveyListComponent,
     CreateSurveyDeleteComponent,
     AnswerSurveyComponent,
-    CreateSurveyDeactivateComponent
+    CreateSurveyDeactivateComponent,
+    TruehomepageComponent
   ],
   imports: [
     BrowserModule,
