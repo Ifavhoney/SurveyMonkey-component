@@ -1,4 +1,4 @@
-# SurveyMonkey-component
+# SurveyWebApp
 
 <h1><b>Welcome to YeerSurvey </b></h1>
 
