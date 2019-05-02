@@ -64,6 +64,6 @@ Credits: Harvey Cabrias - Software Engineer - Front-end
 
 <h6>
 Credits: kapilan santhiramohan - Software Engineer - Front-end
-<br>https://www.linkedin.com/in/kapilan-santhiramohan-030137180/
+<br>LinkedIn: https://www.linkedin.com/in/kapilan-santhiramohan-030137180/
 </h6>
 
